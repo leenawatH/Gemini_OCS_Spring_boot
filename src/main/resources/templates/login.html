@@ -1,0 +1,82 @@
+
+<html>
+  <head>
+    <title>Login Form</title>
+    <style>
+      body {
+        background-color: #f2f2f2;
+      }
+      
+      form {
+        background-color: #fff;
+        width: 300px;
+        height: 320px;
+        margin: auto;
+        margin-top: 50px;
+        border: 2px solid #333;
+        padding: 20px;
+        border-radius: 10px;
+      }
+      
+      form h3 {
+        margin: 0;
+        margin-bottom: 10px;
+        color: #333;
+        font-size: 1.5rem;
+        font-weight: bold;
+        text-align: center;
+      }
+      
+      form label {
+        display: block;
+        margin-bottom: 5px;
+        color: #333;
+        font-size: 1.2rem;
+      }
+      
+      form input[type="text"],
+      form input[type="password"] {
+        display: block;
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 1rem;
+        margin-bottom: 10px;
+      }
+      
+      form input[type="submit"] {
+        background-color: #3cb371;
+        color: #fff;
+        border: none;
+        padding: 10px;
+        font-size: 1.2rem;
+        font-weight: bold;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      
+      form input[type="submit"]:hover {
+        background-color: #2e8b57;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <form action="/login" method="post">
+      <h3>Login Form</h3>
+      
+      
+      <label for="userName">Username:</label>
+      <input type="text" name="userName" id="userName" required>
+      
+      <label for="password">Password:</label>
+      <input type="password" name="password" id="password" required>
+      
+      <input type="submit" value="Login">
+      
+    </form>
+    
+  </body>
+</html>
+

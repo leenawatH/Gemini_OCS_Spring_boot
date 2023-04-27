@@ -1,0 +1,421 @@
+<!-- https://www.baeldung.com/spring-mvc-form-tutorial -->
+<!-- <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %> -->
+<!DOCTYPE html>
+<!-- <html lang="en" xmlns:th="http://www.thymeleaf.org"> -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Science Plan</title>
+</head>
+
+<body>
+    <div class="formbold-main-wrapper">
+        <div class="formbold-form-wrapper">
+            <div class="formbold-event-wrapper">
+                <span>Science Plan</span>
+                <h3>Create Science Plan</h3>
+
+                <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+                    <use xlink:href="#image0_1675_1746"
+                        transform="translate(0 -0.524787) scale(0.000379363 0.000864594)" />
+                </pattern>
+
+                <form name="createSciencePlan"
+                    th:action="@{scienceplan}"
+                    method="POST" modelAttribute="createSciencePlan" role="form">
+
+                    <h3>Science Plan Details</h3>
+                    <div class="formbold-input-flex">
+                        <div>
+                            <label for="creator" class="formbold-form-label" path="creator">
+                                Creator*
+                            </label>
+                            <input type="text" name="creator" id="creator" class="formbold-form-input" path="creator"
+                                required />
+                        </div>
+                        <div>
+                            <label for="submitter" class="formbold-form-label" path="submitter"> Submitter* </label>
+                            <input type="text" step="0.1" name="submitter" id="submitter" class="formbold-form-input"
+                                path="submitter" required />
+                        </div>
+                    </div>
+
+                    <div class="formbold-input-flex">
+                        <div>
+                            <label for="funding" class="formbold-form-label" path="funding">
+                                Funding*
+                            </label>
+                            <input type="number" step="0.1" name="funding" id="funding" path="funding"
+                                class="formbold-form-input" required />
+                        </div>
+                        <div>
+                            <label for="starSystem" class="formbold-form-label" path="starSystem">
+                                Star System*
+                            </label>
+                            <select name="starSystem" id="starSystem" path="starSystem" class="formbold-form-select"
+                                required>
+                                <option th:each="constellation: ${constellations}" th:value="${constellation}" th:text="${constellation}"></option>
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="formbold-input-flex">
+                        <div>
+                            <label for="startDate" class="formbold-form-label" path="startDate">
+                                Start Date*
+                            </label>
+                            <input type="date" name="startDate" id="startDate" path="startDate"
+                                class="formbold-form-input" required />
+                        </div>
+                    
+                        <div>
+                            <label for="endDate" class="formbold-form-label" path="endDate">
+                                End Date*
+                            </label>
+                            <input type="date" name="endDate" id="endDate" path="endDate" class="formbold-form-input"
+                                required />
+                        </div>
+                    </div>
+                    
+                    <script>
+                        var today = new Date().toISOString().split('T')[0];
+                        document.getElementById("startDate").setAttribute('min', today);
+                        document.getElementById("endDate").setAttribute('min', today);
+                    </script>
+                    
+                    
+                    
+                    
+
+                    <div class="formbold-input-flex">
+                        <div>
+                            <label for="objective" class="formbold-form-label" path="objective">
+                                Objective*
+                            </label>
+                            <input type="text" name="objective" id="objective" path="objective"
+                                class="formbold-form-input" required />
+                        </div>
+                        <div>
+                            <label for="location" class="formbold-form-label" path="location">
+                                Telescope Location*
+                            </label>
+                            <!-- select -->
+                            <select name="location" id="location" path="location" class="formbold-form-select"
+                                required>
+                                <option th:each="loc: ${telescopeLocations}" th:value="${loc}" th:text="${loc}"></option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <h3>Data Requirements</h3>
+                    <div class="formbold-input-flex">
+                        <div>
+                            <label for="fileType" class="formbold-form-label" path="fileType">
+                                File Type*
+                            </label>
+                            <input type="text" name="fileType" id="fileType" path="fileType" class="formbold-form-input"
+                                required />
+                        </div>
+                        <div>
+                            <label for="fileQuality" class="formbold-form-label" path="fileQuality">
+                                File Quality*
+                            </label>
+                            <input type="text" name="fileQuality" id="fileQuality" path="fileQuality"
+                                class="formbold-form-input" required />
+                        </div>
+                    </div>
+                    <div class="formbold-input-flex">
+                        <div>
+                            <label for="colorType" class="formbold-form-label" path="colorType">
+                                Color Type*
+                            </label>
+                            <input type="text" name="colorType" id="colorType" path="colorType"
+                                class="formbold-form-input" required />
+                        </div>
+                        <div>
+                            <label for="contrast" class="formbold-form-label" path="contrast">
+                                Contrast*
+                            </label>
+                            <input type="number" step="0.1" name="contrast" id="contrast" path="contrast" class="formbold-form-input"
+                                required />
+                        </div>
+                    </div>
+                    <div class="formbold-input-flex">
+                        <div>
+                            <label for="brightness" class="formbold-form-label" path="brightness">
+                                Brightness*
+                            </label>
+                            <input type="number" step="0.1" name="brightness" id="brightness" path="brightness"
+                                class="formbold-form-input" required />
+                        </div>
+                        <div>
+                            <label for="saturation" class="formbold-form-label" path="saturation">
+                                Saturation*
+                            </label>
+                            <input type="number" step="0.1" name="saturation" id="saturation" path="saturation"
+                                class="formbold-form-input" required />
+                        </div>
+                    </div>
+                    <div class="formbold-input-flex">
+                        <div>
+                            <label for="highlights" class="formbold-form-label" path="highlights">
+                                Highlights*
+                            </label>
+                            <input type="number" step="0.1" name="highlights" id="highlights" path="highlights"
+                                class="formbold-form-input" required />
+                        </div>
+                        <div>
+                            <label for="exposure" class="formbold-form-label" path="exposure">
+                                Exposure*
+                            </label>
+                            <input type="number" step="0.1" name="exposure" id="exposure" path="exposure" class="formbold-form-input"
+                                required />
+                        </div>
+                    </div>
+                    <div class="formbold-input-flex">
+                        <div>
+                            <label for="shadows" class="formbold-form-label" path="shadows">
+                                Shadows*
+                            </label>
+                            <input type="number" step="0.1" name="shadows" id="shadows" path="shadows" class="formbold-form-input"
+                                required />
+                        </div>
+                        <div>
+                            <label for="whites" class="formbold-form-label" path="whites">
+                                Whites*
+                            </label>
+                            <input type="number" step="0.1" name="whites" id="whites" path="whites" class="formbold-form-input"
+                                required />
+                        </div>
+                    </div>
+                    <div class="formbold-input-flex">
+                        <div>
+                            <label for="blacks" class="formbold-form-label" path="blacks">
+                                Blacks*
+                            </label>
+                            <input type="number" step="0.1" name="blacks" id="blacks" path="blacks" class="formbold-form-input"
+                                required />
+                        </div>
+                        <div>
+                            <label for="luminance" class="formbold-form-label" path="luminance">
+                                Luminance*
+                            </label>
+                            <input type="number" step="0.1" name="luminance" id="luminance" path="luminance"
+                                class="formbold-form-input" required />
+                        </div>
+                    </div>
+                    <div class="formbold-input-flex">
+                        <div>
+                            <label for="hue" class="formbold-form-label" path="hue">
+                                Hue*
+                            </label>
+                            <input type="number" step="0.1" name="hue" id="hue" path="hue" class="formbold-form-input" required />
+                        </div>
+                    </div>
+                    <button class="formbold-btn">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .formbold-main-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 48px;
+        }
+
+        .formbold-form-wrapper {
+            margin: 0 auto;
+            max-width: 700px;
+            width: 100%;
+            background: white;
+        }
+
+        .formbold-event-wrapper span {
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 24px;
+            letter-spacing: 2.5px;
+            color: #6a64f1;
+            display: inline-block;
+            margin-bottom: 12px;
+        }
+
+        .formbold-event-wrapper h3 {
+            font-weight: 700;
+            font-size: 28px;
+            line-height: 34px;
+            color: #07074d;
+            width: 60%;
+            margin-bottom: 15px;
+        }
+
+        .formbold-event-wrapper h4 {
+            font-weight: 600;
+            font-size: 20px;
+            line-height: 24px;
+            color: #07074d;
+            width: 60%;
+            margin: 25px 0 15px;
+        }
+
+        .formbold-event-wrapper p {
+            font-size: 16px;
+            line-height: 24px;
+            color: #536387;
+        }
+
+        .formbold-event-details {
+            background: #fafafa;
+            border: 1px solid #dde3ec;
+            border-radius: 5px;
+            margin: 25px 0 30px;
+        }
+
+        .formbold-event-details h5 {
+            color: #07074d;
+            font-weight: 600;
+            font-size: 18px;
+            line-height: 24px;
+            padding: 15px 25px;
+        }
+
+        .formbold-event-details ul {
+            border-top: 1px solid #edeef2;
+            padding: 25px;
+            margin: 0;
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            row-gap: 14px;
+        }
+
+        .formbold-event-details ul li {
+            color: #536387;
+            font-size: 16px;
+            line-height: 24px;
+            width: 50%;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .formbold-form-title {
+            color: #07074d;
+            font-weight: 600;
+            font-size: 28px;
+            line-height: 35px;
+            width: 60%;
+            margin-bottom: 30px;
+        }
+
+        .formbold-input-flex {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 15px;
+        }
+
+        .formbold-input-flex>div {
+            width: 50%;
+        }
+
+        .formbold-form-input {
+            text-align: center;
+            width: 100%;
+            padding: 13px 22px;
+            border-radius: 5px;
+            border: 1px solid #dde3ec;
+            background: #ffffff;
+            font-weight: 500;
+            font-size: 16px;
+            color: #536387;
+            outline: none;
+            resize: none;
+        }
+
+        .formbold-form-select {
+            -webkit-appearance: none;
+            width: 100%;
+            padding: 12px 22px;
+            border-radius: 5px;
+            border: 1px solid #dde3ec;
+            background: #ffffff;
+            font-size: 16px;
+            color: #536387;
+            outline: none;
+            resize: none;
+
+        }
+
+        .formbold-form-input:focus {
+            border-color: #6a64f1;
+            box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .formbold-form-label {
+            color: #536387;
+            font-size: 14px;
+            line-height: 24px;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .formbold-policy {
+            font-size: 14px;
+            line-height: 24px;
+            color: #536387;
+            width: 70%;
+            margin-top: 22px;
+        }
+
+        .formbold-policy a {
+            color: #6a64f1;
+        }
+
+        .formbold-btn {
+
+            text-align: center;
+            width: 100%;
+            font-size: 16px;
+            border-radius: 5px;
+            padding: 14px 25px;
+            border: none;
+            font-weight: 500;
+            background-color: #6a64f1;
+            color: white;
+            cursor: pointer;
+            margin-top: 25px;
+        }
+
+        .formbold-btn:hover {
+            box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.451);
+        }
+
+        input::placeholder {
+            font-weight: lighter;
+        }
+    </style>
+</body>
+
+</html>
+
+<!-- Reference -->
+<!-- Author: FormBold Team -->
+<!-- Learn More: https://formbold.com -->

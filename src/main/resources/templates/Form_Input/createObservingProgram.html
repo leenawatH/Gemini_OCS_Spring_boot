@@ -1,0 +1,461 @@
+<!-- https://www.baeldung.com/spring-mvc-form-tutorial -->
+<!-- <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %> -->
+<!DOCTYPE html>
+<!-- <html lang="en" xmlns:th="http://www.thymeleaf.org"> -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Observing Program</title>
+</head>
+
+<body>
+    <div class="formbold-main-wrapper">
+
+        <div class="formbold-form-wrapper">
+            <div class="formbold-event-wrapper">
+                <span>Observing Program</span>
+                <h3>Create Observing Program</h3>
+
+                <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+                    <use xlink:href="#image0_1675_1746"
+                        transform="translate(0 -0.524787) scale(0.000379363 0.000864594)" />
+                </pattern>
+                
+                <div class="formbold-event-details">
+                    <h5>Science Plan Details</h5>
+                    <ul>
+                        <li>
+                            <p th:text="'Plan Number: ' + ${createObservingProgram.planNo}"></p>
+
+                        </li>
+                        <li>
+                            <p th:text="'Creator: ' + ${createObservingProgram.creator}"></p>
+
+                        </li>
+                        <li>
+                            <p th:text="'Submitter: ' + ${createObservingProgram.submitter}"></p>
+
+                        </li>
+                        <li>
+                            <p th:text="'Funding (USD): ' + ${createObservingProgram.fundingInUSD}"></p>
+
+                        </li>
+
+                        <li>
+                            <p th:text="'Star System: ' + ${createObservingProgram.starSystem}"></p>
+
+                        </li>
+                        <li>
+                            <p th:text="'Start Date: ' + ${createObservingProgram.startDate}"></p>
+
+                        </li>
+                        <li>
+                            <p th:text="'End Date: ' + ${createObservingProgram.endDate}"></p>
+
+                        </li>
+                        <li>
+                            <p th:text="'Telescope Location: ' + ${createObservingProgram.telescopeLocation}"></p>
+
+                        </li>
+
+                        <li>
+                            <p th:text="'Objectives: ' + ${createObservingProgram.objectives}"></p>
+
+                        </li>
+                    </ul>
+                </div>
+                 <div class="formbold-event-details">
+                    <h5>Data Requirements</h5>
+                    <ul>
+                        <li>
+                            <p th:text="'File Type: ' + ${datarequirement[0].fileType}"></p>
+
+                        </li>
+                       <li>
+                            <p th:text="'File Quality: ' + ${datarequirement[0].fileQuality}"></p>
+
+                        </li>
+                        <li>
+                            <p th:text="'Color Type: ' + ${datarequirement[0].colorType}"></p>
+
+                        </li>
+                        <li>
+                            <p th:text="'Contrast: ' + ${datarequirement[0].contrast}"></p>
+
+                        </li>
+                        <li>
+                            <p th:text="'Brightness: ' + ${datarequirement[0].brightness}"></p>
+
+                        </li>
+                        <li>
+                            <p th:text="'Saturation: ' + ${datarequirement[0].saturation}"></p>
+
+                        </li>
+                        <li>
+                            <p th:text="'Highlights: ' + ${datarequirement[0].highlights}"></p>
+
+                        </li>
+                        <li>
+                            <p th:text="'Exposure: ' + ${datarequirement[0].exposure}"></p>
+
+                        </li>
+                        <li>
+                            <p th:text="'Shadows: ' + ${datarequirement[0].shadows}"></p>
+
+                        </li>
+                        <li>
+                            <p th:text="'Whites: ' + ${datarequirement[0].whites}"></p>
+
+                        </li>
+                        <li>
+                            <p th:text="'Blacks: ' + ${datarequirement[0].blacks}"></p>
+
+                        </li>
+                        <li>
+                            <p th:text="'Luminance: ' + ${datarequirement[0].luminance}"></p>
+
+                        </li>
+
+                        <p th:text="'Hue: ' + ${datarequirement[0].hue}"></p>
+
+                        </li>
+
+                    </ul>
+                </div>
+
+
+            </div>
+
+            <form name="createObservingProgram" th:action="@{createObservingProgram/create/{planNo}(planNo=${createObservingProgram.planNo})}" method="POST" modelAttribute="createObservingProgram"
+                role="form">
+                <h2 class="formbold-form-title">New Observing Program Form</h2>
+
+                <div class="formbold-input-flex">
+                    <div>
+                        <label for="opticsPrimary" class="formbold-form-label" path="opticsPrimary">
+                            Optics Primary*
+                        </label>
+                        <input type="text" name="opticsPrimary" id="opticsPrimary" class="formbold-form-input"
+                            path="opticsPrimary" required />
+                    </div>
+                    <div>
+                        <label for="fStop" class="formbold-form-label" path="fStop"> fStop* </label>
+                        <input type="number" step="0.1" name="fStop" id="fStop" class="formbold-form-input" path="fStop"
+                            required />
+                    </div>
+                </div>
+
+                <div class="formbold-input-flex">
+                    <div>
+                        <label for="opticsSecondaryRMS" class="formbold-form-label" path="opticsSecondaryRMS"> Optics
+                            Secondary RMS*
+                        </label>
+                        <input type="number" step="0.1" name="opticsSecondaryRMS" id="opticsSecondaryRMS"
+                            path="opticsSecondaryRMS" class="formbold-form-input" required />
+                    </div>
+                    <div>
+                        <label for="scienceFoldMirrorDegree" class="formbold-form-label" path="scienceFoldMirrorDegree">
+                            Science Fold Mirror
+                            Degree*
+                        </label>
+                        <input type="number" step="0.1" name="scienceFoldMirrorDegree" id="scienceFoldMirrorDegree"
+                            path="scienceFoldMirrorDegree" class="formbold-form-input" required />
+                    </div>
+                </div>
+
+
+                <div class="formbold-input-flex">
+                    <div>
+                        <label for="scienceFoldMirrorType" class="formbold-form-label" path="scienceFoldMirrorType">
+                            Science Fold Mirror
+                            Type*
+                        </label>
+                        <select name="scienceFoldMirrorType" id="scienceFoldMirrorType" class="formbold-form-select"
+                            path="scienceFoldMirrorType" required>
+                            <option value="REFLECTIVE_CONVERGING_BEAM">REFLECTIVE CONVERGING BEAM</option>
+                            <option value="CASSEGRAIN_FOCUS">CASSEGRAIN FOCUS</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="calibrationunits" class="formbold-form-label" path="calibrationunits"> Calibration
+                            Units*
+                        </label>
+                        <select name="calibrationunits" id="calibrationunits" class="formbold-form-select"
+                            path="calibrationunits" required>
+                            <option value="Argon">Argon</option>
+                            <option value="Xenon">Xenon</option>
+                            <option value="ThAr">ThAr</option>
+                            <option value="CuAr">CuAr</option>
+                        </select>
+                    </div>
+
+                </div>
+
+
+                <div class="formbold-input-flex">
+                    <div>
+                        <label for="moduleContent" class="formbold-form-label" path="moduleContent"> Module Content*
+                        </label>
+                        <input type="number" name="moduleContent" id="moduleContent" class="formbold-form-input"
+                            path="moduleContent" required />
+                    </div>
+                    <div>
+                        <label for="lightTypes" class="formbold-form-label" path="lightTypes"> Light Types*
+                        </label>
+                        <select name="lightTypes" id="lightTypes" class="formbold-form-select" path="lightTypes"
+                            required>
+                            <option value="MaunaKeaSkyEmission">Mauna Kea Sky Emission</option>
+                            <option value="CerroPachonSkyEmission">Cerro Pachon Sky Emission</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label for="telePositionPairs" class="formbold-form-label" path="telePositionPairs"> Telescope
+                        Position (direction,
+                        degree)*
+                    </label>
+                    <div class="formbold-input-flex">
+                        <input type="number" name="direction[0]" id="direction[0]" class="formbold-form-input"
+                            path="telePositionPairs" placeholder="direction[0]" required />
+                        <input type="number" name="degree[0]" id="degree[0]" class="formbold-form-input"
+                            path="telePositionPairs" placeholder="degree[0]" required />
+
+                    </div>
+                    <div class="formbold-input-flex">
+                        <input type="number" name="direction[1]" id="direction[1]" class="formbold-form-input"
+                            path="telePositionPairs" placeholder="direction[1]" required />
+                        <input type="number" name="degree[1]" id="degree[1]" class="formbold-form-input"
+                            path="telePositionPairs" placeholder="degree[1]" required />
+
+                    </div>
+                    <div class="formbold-input-flex">
+                        <input type="number" name="direction[2]" id="direction[2]" class="formbold-form-input"
+                            path="telePositionPairs" placeholder="direction[2]" required />
+                        <input type="number" name="degree[2]" id="degree[2]" class="formbold-form-input"
+                            path="telePositionPairs" placeholder="degree[2]" required />
+
+                    </div>
+                    <div class="formbold-input-flex">
+                        <input type="number" name="direction[3]" id="direction[3]" class="formbold-form-input"
+                            path="telePositionPairs" placeholder="direction[3]" required />
+                        <input type="number" name="degree[3]" id="degree[3]" class="formbold-form-input"
+                            path="telePositionPairs" placeholder="degree[3]" required />
+
+                    </div>
+                    <div class="formbold-input-flex">
+                        <input type="number" name="direction[4]" id="direction[4]" class="formbold-form-input"
+                            path="telePositionPairs" placeholder="direction[4]" required />
+                        <input type="number" name="degree[4]" id="degree[4]" class="formbold-form-input"
+                            path="telePositionPairs" placeholder="degree[4]" required />
+
+                    </div>
+
+                </div>
+                <button class="formbold-btn">Submit Observing Program</button>
+            </form>
+
+        </div>
+    </div>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .formbold-main-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 48px;
+        }
+
+        .formbold-form-wrapper {
+            margin: 0 auto;
+            max-width: 700px;
+            width: 100%;
+            background: white;
+        }
+
+        .formbold-event-wrapper span {
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 24px;
+            letter-spacing: 2.5px;
+            color: #6a64f1;
+            display: inline-block;
+            margin-bottom: 12px;
+        }
+
+        .formbold-event-wrapper h3 {
+            font-weight: 700;
+            font-size: 28px;
+            line-height: 34px;
+            color: #07074d;
+            width: 60%;
+            margin-bottom: 15px;
+        }
+
+        .formbold-event-wrapper h4 {
+            font-weight: 600;
+            font-size: 20px;
+            line-height: 24px;
+            color: #07074d;
+            width: 60%;
+            margin: 25px 0 15px;
+        }
+
+        .formbold-event-wrapper p {
+            font-size: 16px;
+            line-height: 24px;
+            color: #536387;
+        }
+
+        .formbold-event-details {
+            background: #fafafa;
+            border: 1px solid #dde3ec;
+            border-radius: 5px;
+            margin: 25px 0 30px;
+        }
+
+        .formbold-event-details h5 {
+            color: #07074d;
+            font-weight: 600;
+            font-size: 18px;
+            line-height: 24px;
+            padding: 15px 25px;
+        }
+
+        .formbold-event-details ul {
+            border-top: 1px solid #edeef2;
+            padding: 25px;
+            margin: 0;
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            row-gap: 14px;
+        }
+
+        .formbold-event-details ul li {
+            color: #536387;
+            font-size: 16px;
+            line-height: 24px;
+            width: 50%;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .formbold-form-title {
+            color: #07074d;
+            font-weight: 600;
+            font-size: 28px;
+            line-height: 35px;
+            width: 60%;
+            margin-bottom: 30px;
+        }
+
+        .formbold-input-flex {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 15px;
+        }
+
+        .formbold-input-flex>div {
+            width: 50%;
+        }
+
+        .formbold-form-input {
+            text-align: center;
+            width: 100%;
+            padding: 13px 22px;
+            border-radius: 5px;
+            border: 1px solid #dde3ec;
+            background: #ffffff;
+            font-weight: 500;
+            font-size: 16px;
+            color: #536387;
+            outline: none;
+            resize: none;
+        }
+
+        .formbold-form-select {
+            -webkit-appearance: none;
+            width: 100%;
+            padding: 12px 22px;
+            border-radius: 5px;
+            border: 1px solid #dde3ec;
+            background: #ffffff;
+            font-size: 16px;
+            color: #536387;
+            outline: none;
+            resize: none;
+
+        }
+
+        .formbold-form-input:focus {
+            border-color: #6a64f1;
+            box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .formbold-form-label {
+            color: #536387;
+            font-size: 14px;
+            line-height: 24px;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .formbold-policy {
+            font-size: 14px;
+            line-height: 24px;
+            color: #536387;
+            width: 70%;
+            margin-top: 22px;
+        }
+
+        .formbold-policy a {
+            color: #6a64f1;
+        }
+
+        .formbold-btn {
+
+            text-align: center;
+            width: 100%;
+            font-size: 16px;
+            border-radius: 5px;
+            padding: 14px 25px;
+            border: none;
+            font-weight: 500;
+            background-color: #6a64f1;
+            color: white;
+            cursor: pointer;
+            margin-top: 25px;
+        }
+
+        .formbold-btn:hover {
+            box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.451);
+        }
+
+        input::placeholder {
+            font-weight: lighter;
+        }
+    </style>
+</body>
+
+</html>
+
+<!-- Reference -->
+<!-- Author: FormBold Team -->
+<!-- Learn More: https://formbold.com -->
