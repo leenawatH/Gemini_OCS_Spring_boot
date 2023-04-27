@@ -1,0 +1,14 @@
+services:
+  springboot:
+    build: .
+    ports:
+      - "8080:8080"
+  mysql:
+    image: mysql:8
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: 12345678
+      MYSQL_DATABASE: geminidb
+    volumes:
+      - ./dbinit:/docker-entrypoint-initdb.d
